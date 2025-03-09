@@ -54,6 +54,7 @@ export const validatorToken = async (req, res, next) => {
                 console.log("Usuario encontrado:", JSON.stringify(userRol, null, 2));
 
                 req.user = {
+                    id:user.id,
                     name: userRol.name,
                     roleID: userRol.roleID,
                     roleName: rolName

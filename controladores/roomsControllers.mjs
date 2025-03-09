@@ -13,7 +13,7 @@ class HabitacionesController {
             } = req.body
 
             let estadoFinal = estado || "Disponible"
-
+            // validar que la habitacion ya este registrado en el piso acal
 
 
             //Validar que todos los campos estern llenos
@@ -24,6 +24,44 @@ class HabitacionesController {
                 })
             }
 
+            const limiteHabitaciones = 6
+            // Validar que la habitacion tiene el formato de 
+            const expectedRoomNumber = parseInt(`${piso}01`)
+            const maxRoomNumber = expectedRoomNumber + limiteHabitaciones - 1
+             console.log(`Numero de habitacion ${expectedRoomNumber}`)
+             console.log(`maximo numero de habitaciones ${maxRoomNumber}`)
+
+            if (numeroHabitacion < expectedRoomNumber || numeroHabitacion > maxRoomNumber) {
+                return res.status(400).json({
+                    message: `El número de habitación ${numeroHabitacion} no es válido para el piso ${piso}. Debe estar entre ${expectedRoomNumber} y ${maxRoomNumber}.`
+                });
+            }
+
+            // Verificar si la habitacion ya  esta registrada en el piso
+            const existeHabitacion = await habitaciones.findOne({
+                where: {
+                    piso,
+                    numeroHabitacion
+                }
+            })
+            if (existeHabitacion) {
+                return res.status(400).json({
+                    mensaje: "Esta habitacion ya se encuentra registrada en el sistema"
+                })
+            }
+            const roomCount = await habitaciones.count({
+                where: {
+                    piso
+                }
+            })
+
+            console.log(`cantidad de habitaciones registradas ${roomCount}`)
+
+            if(roomCount > limiteHabitaciones){
+                return res.status(400).json({mensaje:`No se pueden registrar mas de ${limiteHabitaciones} en le piso ${piso}`})
+            }
+
+           
             const newRoom = await habitaciones.create({
                 piso,
                 numeroHabitacion,
@@ -120,8 +158,10 @@ class HabitacionesController {
 
 
         } catch (error) {
-                console.error(error)
-                res.status(500).json({msg:"error interno del servidor"})
+            console.error(error)
+            res.status(500).json({
+                msg: "error interno del servidor"
+            })
         }
 
 
