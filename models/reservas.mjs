@@ -23,6 +23,11 @@ export const reservas = conectDB.define("reservas", {
         type: DataTypes.INTEGER,
         allowNull: false
     },
+    estado:{
+        type:DataTypes.ENUM("Cancelada","Activa"),
+        defaultValue:"Activa",
+        allowNull:false
+    },
     userID: {
         type: DataTypes.INTEGER,
         // references: {

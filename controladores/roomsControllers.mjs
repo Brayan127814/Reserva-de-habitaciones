@@ -9,7 +9,7 @@ class HabitacionesController {
                 numeroHabitacion,
                 precio,
                 estado,
-                desripcion
+                descripcion
             } = req.body
 
             let estadoFinal = estado || "Disponible"
@@ -17,7 +17,7 @@ class HabitacionesController {
 
 
             //Validar que todos los campos estern llenos
-            if (!piso || !numeroHabitacion || !precio || !desripcion) {
+            if (!piso || !numeroHabitacion || !precio || !descripcion) {
                 return res.status(400).json({
                     message: 'Todos los campos son obligatorios'
 
@@ -67,7 +67,7 @@ class HabitacionesController {
                 numeroHabitacion,
                 precio,
                 estado: estadoFinal,
-                desripcion
+                descripcion
             })
 
             res.status(200).json({

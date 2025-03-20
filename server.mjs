@@ -11,7 +11,6 @@ import routeCliente from './routes/routesClientes.mjs'
 import roomRouter from './routes/roomRoute.mjs'
 import reservationRoutes from './routes/reservationsRoutes.mjs'
 
-// import roles from './models/role.mjs'
 import './relaciones.mjs'
 
 

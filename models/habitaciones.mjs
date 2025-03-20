@@ -30,7 +30,7 @@ import {
         allowNull: false,
         defaultValue: "Disponible"
     },
-    desripcion:{
+    descripcion:{
         type:DataTypes.STRING,
         allowNull:false
     }

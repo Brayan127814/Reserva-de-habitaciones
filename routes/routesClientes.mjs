@@ -11,6 +11,6 @@ const routeCliente = Router()
 
 routeCliente.post('/registrar-Clientes',registerUser)
 routeCliente.post('/login',login)
-routeCliente.get('/consultarCliente',validatorToken,validatorRol(['admin']),consultarClientes)
+routeCliente.get('/consultarCliente',validatorToken,validatorRol(['admin',"usuario","recepcionista"]),consultarClientes)
 
 export default routeCliente;
