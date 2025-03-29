@@ -9,8 +9,8 @@ import validatorRol from "../middelware/validarRol.mjs";
 //rutas 
 const routeCliente = Router()
 
-routeCliente.post('/registrar-Clientes',registerUser)
+routeCliente.post('/register',registerUser)
 routeCliente.post('/login',login)
-routeCliente.get('/consultarCliente',validatorToken,validatorRol(['admin',"usuario","recepcionista"]),consultarClientes)
+routeCliente.get('/consultarCliente',consultarClientes)
 
 export default routeCliente;

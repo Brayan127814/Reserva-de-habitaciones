@@ -94,7 +94,7 @@ class HabitacionesController {
 
             if (!estadosValidos.includes(estado)) {
                 return res.status(400).json({
-                    mensajeJ: "Estado no valido"
+                    mensaje: "Estado no valido"
                 })
             }
 

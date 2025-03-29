@@ -1,6 +1,6 @@
 
 import express from 'express'
-
+import cors from 'cors'
 
 import conectDB from './config/db.mjs'
 import users from './models/usuarios.mjs'
@@ -15,11 +15,11 @@ import './relaciones.mjs'
 
 
 const app = express()
-const puerto = process.env.PORT || 3000
+const puerto = process.env.PORT || 4000
 
 
 app.use(express.json())
-
+app.use(cors())
 
 
 
